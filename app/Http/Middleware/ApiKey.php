@@ -16,8 +16,6 @@ class ApiKey
     public function handle(Request $request, Closure $next): Response
     {
         $apiKey = $request->header('X-Api-Key');
-        dump($request);
-        dd($apiKey);
         if(empty($apiKey) || config('app.api_key') != $apiKey) return response()->json(['message'=>'Forbidden'], 403);
         return $next($request);
         
